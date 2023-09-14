@@ -1,0 +1,2 @@
+[data-error]{color:#dd0000;font-size:12px;padding-top:5px;}
+[data-error]:empty{display:none;}
