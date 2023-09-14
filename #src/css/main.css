@@ -4008,3 +4008,10 @@ a:focus-visible {
   padding: 20px 0;
 }
 /*# sourceMappingURL=main.css.map */
+video {
+  display: block;
+  max-width: 100%;
+}
+.case-example__new--vid{
+  margin-bottom: -2px;
+}

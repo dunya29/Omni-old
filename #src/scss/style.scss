@@ -1,16 +1,7 @@
-.case-item {
-    margin-bottom: 80px;
-    @media (max-width: 1700px) {
-        margin-bottom: 50px;
-    }
+video {
+    display: block;
+    max-width: 100%;
 }
-.case-text {
-    @media (max-width: 1700px) {
-        margin: 50px 0!important;
-    }
-}
-.case-cards {
-    @media (max-width: 1700px) {
-        margin-top: 50px !important;
-    }
+.case-example-new--vid {
+    margin-bottom: -1px;
 }
