@@ -4012,6 +4012,23 @@ video {
   display: block;
   max-width: 100%;
 }
+.case-example-new--vid {
+  margin-bottom: -1px;
+}
 .case-example__new--vid{
   margin-bottom: -2px;
+}
+.works-card__img img {
+  -webkit-transition: 0.6s ease-out;
+  -o-transition: 0.6s ease-out;
+  transition: 0.6s ease-out;
+}
+.works-card__img:hover img {
+  -webkit-transition: 0.6s ease-out;
+  -o-transition: 0.6s ease-out;
+  transition: 0.6s ease-out;
+}
+.image-lazy img {
+  width: 100%;
+  height: 80vh;
 }
