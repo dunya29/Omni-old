@@ -527,7 +527,6 @@
   let lazyImages = document.querySelectorAll(".lazy")
   let i = 0
   function loaded(item) {
-    item.style.height = "auto"
     item.src = item.dataset.src
     if (item.parentNode.querySelector("source")) {
       item.parentNode.querySelectorAll("source").forEach(el => {
@@ -538,13 +537,14 @@
   function loadImg() {
     loaded(document.querySelectorAll(".lazy")[i])
     document.querySelectorAll(".lazy")[i].onload = function nextImg() {
+      document.querySelectorAll(".lazy")[i].style.height = "auto"
       if (i < document.querySelectorAll(".lazy").length){
         i++
         loadImg()
       }
     }
   }
-  loadImg()
+  loadImg() 
  
   function Marquee(selector, speed) {
     const parentSelector = document.querySelector(selector);
