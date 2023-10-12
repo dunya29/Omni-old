@@ -5,3 +5,121 @@ video {
 .case-example-new--vid {
     margin-bottom: -1px;
 }
+html,body {
+    scroll-behavior: smooth;
+}
+.footer {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform : translate3d(0, 0, 0);
+}
+.image-lazy img {
+    width: 100%;
+    height: 80vh;
+}
+.header__content {
+    box-sizing: border-box;
+    height: 92px;
+    transition: padding 0s;
+    @media (max-width: 960px) {
+    height: 84px;
+    }
+}
+.case__body {
+    cursor: zoom-in;
+}
+.modal {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    overflow: hidden;
+    transition: all .3s .1s ease-out;
+    &.open {
+        visibility: visible;
+        opacity: 1;
+        transition: all .3s ease-out;
+        .modal__content {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all .3s .1s ease-out;
+        }
+    }
+    .btn-main {
+        position: fixed;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+    }
+    .image-lazy {
+        width: 100%;
+        display: block;
+    }
+    .case-text {
+        margin-top: 0;
+    }
+    .title-h2,.case-text__disc {
+        color: #fff;
+    }
+}
+/* .footer {
+    position: static
+} */
+.modal__overlay {
+    padding: 80px 40px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.80);
+    backdrop-filter: blur(5px);
+    overflow: auto;
+}
+.modal__content {
+    width: 100%;
+    max-width: 1620px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all .3s ease-out;
+}
+.modal__close {
+    padding: 0 4px;
+    border: 2px solid rgba(255, 255, 255, 0.60);
+    position: absolute;
+    top: 80px;
+    right: 50px;
+    cursor: pointer;
+    z-index: 1000;
+    svg {
+        display: block;
+        width: 42px;
+        height: 42px;
+        pointer-events: none;
+    }
+}
+.js-pageup{
+    position: fixed;
+    bottom: 80px;
+    right: 50px;
+    cursor: pointer;
+    z-index: 1000;
+    svg {
+        display: block;
+        width: 54px;
+        height: 54px;
+        pointer-events: none;
+    }
+}
