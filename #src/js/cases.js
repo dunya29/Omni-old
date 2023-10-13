@@ -20,7 +20,6 @@ function loaded(item) {
 function loadImg() {
     loaded(lazyImages[i])
     document.querySelectorAll(".lazy")[i].onload = function nextImg() {
-      lazyImages[i].style.height = "auto"
       lazyImages[i].removeAttribute("data-src")
       if (lazyImages[i].parentNode.querySelector("source")) {
         lazyImages[i].parentNode.querySelectorAll("source").forEach(el => {
