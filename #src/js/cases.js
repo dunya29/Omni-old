@@ -21,6 +21,12 @@ function loadImg() {
     loaded(lazyImages[i])
     document.querySelectorAll(".lazy")[i].onload = function nextImg() {
       lazyImages[i].style.height = "auto"
+      lazyImages[i].removeAttribute("data-src")
+      if (lazyImages[i].parentNode.querySelector("source")) {
+        lazyImages[i].parentNode.querySelectorAll("source").forEach(el => {
+          el.removeAttribute('data-srcset')
+        })
+      }
       if (i === lazyImages.length - 1) {
         document.querySelector(".case__body").style.pointerEvents = "auto"
       }
