@@ -4,7 +4,7 @@ $(document).on('click', '.modal .js-pageup', function () {
     {
       scrollTop: 0, 
     },
-    1000
+    1500
   );
 });
 let lazyImages = document.querySelectorAll(".lazy")
@@ -38,6 +38,7 @@ function enableScroll() {
     document.querySelectorAll('.fixed-block').forEach(block => block.style.paddingRight = '0px')
   }
   document.body.style.paddingRight = '0px'
+  document.querySelector('.footer').style.right = '0px'
   document.body.classList.remove("dis-scroll")
 }
 //disable scroll
@@ -47,6 +48,7 @@ function disableScroll() {
     document.querySelectorAll('.fixed-block').forEach(block => block.style.paddingRight = paddingValue)
   }
   document.body.style.paddingRight = paddingValue
+  document.querySelector('.footer').style.right = paddingValue
   document.body.classList.add("dis-scroll");
 }
 //show modal
@@ -62,7 +64,20 @@ function closeModal(modal) {
   },400);
 }
 document.querySelector(".case__body").addEventListener("click", ()=> {
-    openModal(document.querySelector(".fancy-modal"))
     document.querySelector(".modal__inner").innerHTML = document.querySelector(".case__body").innerHTML
+    setTimeout(() => {
+      openModal(document.querySelector(".fancy-modal"))
+    }, 0);
 })
-document.querySelector(".modal__close").addEventListener("click", ()=>closeModal(document.querySelector(".fancy-modal")))
+document.querySelector(".modal__overlay").addEventListener("click", e => {
+  if (!document.querySelector(".modal__content").contains(e.target)) {
+    closeModal(document.querySelector(".fancy-modal"))
+  }
+})
+document.querySelector(".modal__overlay").addEventListener("scroll", () => {
+  if (document.querySelector(".modal__overlay").scrollTop > 400) {
+    document.querySelector(".js-pageup").classList.add("show")
+  } else {
+    document.querySelector(".js-pageup").classList.remove("show")
+  }
+})
