@@ -7,6 +7,10 @@ video {
   margin-bottom: -1px;
 }
 
+.case-example-new {
+  background-color: #EBEAE6;
+}
+
 html,
 body {
   scroll-behavior: smooth;
