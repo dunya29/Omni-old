@@ -1,4 +1,5 @@
 "use strict"
+//"/" udalit github
 document.addEventListener("DOMContentLoaded", ()=> {
   let urlArr = location.href.split("/")
   let idx = urlArr.findIndex(i => "proekty" === i)
@@ -6,7 +7,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
     sessionStorage.setItem("projectPath", location.pathname)
     let url = urlArr.slice(0, urlArr.length - 1).join("/")
     window.location.replace(
-      url,
+      url + "/",
     );
   }
 })
