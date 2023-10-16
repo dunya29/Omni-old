@@ -148,7 +148,7 @@ body {
 
 .modal .btn-main {
   visibility: hidden;
-  opacity: 1;
+  opacity: 0;
   position: fixed;
   bottom: 80px;
   left: 50%;

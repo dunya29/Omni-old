@@ -2,7 +2,6 @@
 //"/" udalit github
 document.addEventListener("DOMContentLoaded", ()=> {
   let urlArr = location.href.split("/")
-  console.log(urlArr)
   let idx = urlArr.findIndex(i => "proekty" === i)
   if (idx != -1 && (idx != (urlArr.length - 1)) && urlArr[idx + 1] != "") {
     sessionStorage.setItem("projectPath", urlArr[urlArr.length - 1])
@@ -23,9 +22,9 @@ function loaded(item) {
     })
   }
 }
-function loadImg(lazyImages) {
+function loadImg(lazyImages, i) {
   loaded(lazyImages[i])
-  document.querySelectorAll(".lazy")[i].onload = function nextImg() {
+  lazyImages[i].onload = function nextImg() {
     lazyImages[i].removeAttribute("data-src")
     if (lazyImages[i].parentNode.querySelector("source")) {
       lazyImages[i].parentNode.querySelectorAll("source").forEach(el => {
@@ -37,13 +36,13 @@ function loadImg(lazyImages) {
     }
     if (i < lazyImages.length - 1) {
       i++
-      loadImg(lazyImages)
+      loadImg(lazyImages, i)
     }
   }
 }
 if (document.querySelectorAll(".lazy").length > 0) {
   let lazyImages = document.querySelectorAll(".lazy")
-  loadImg(lazyImages)
+  loadImg(lazyImages, i)
 }
 function enableScroll() {
   if (document.querySelectorAll('.fixed-block')) {
@@ -71,10 +70,10 @@ function openModal(modal) {
 // unshow modal
 function closeModal(modal) {
   modal.classList.remove("open")
+  document.querySelector(".modal .btn-main").style.opacity = 0
+  document.querySelector(".modal .btn-main").style.visibility = "hidden"
   modal.querySelector('.modal__inner').innerHTML = ""
-  setTimeout(() => {
-    enableScroll()
-  }, 300);
+  enableScroll()
 }
 
 function changeUrl(item) {
@@ -106,8 +105,8 @@ function changeUrl(item) {
          </g>
        
        </svg></div>` 
-       document.querySelector(".modal .btn-main").opacity = 0
-       document.querySelector(".modal .btn-main").visibility = "hidden"
+       document.querySelector(".modal .btn-main").style.opacity = 0
+       document.querySelector(".modal .btn-main").style.visibility = "hidden"
     fetch(href)
       .then(response => {
         if (response.ok) {
@@ -119,11 +118,11 @@ function changeUrl(item) {
         let doc = (new window.DOMParser()).parseFromString(res, "text/html")
         document.title = doc.title
         document.querySelector('.fancy-modal .modal__inner').innerHTML = doc.querySelector(".case__content").innerHTML
-        document.querySelector(".modal .btn-main").opacity = 1
-        document.querySelector(".modal .btn-main").visibility = "visible"
-    /*   })
+        document.querySelector(".modal .btn-main").style.opacity = 1
+        document.querySelector(".modal .btn-main").style.visibility = "visible"
+      })
       .then(res => {
-        openModal(document.querySelector('.fancy-modal')) */
+        openModal(document.querySelector('.fancy-modal'))
         window.history.pushState("", "", href)
         let modal = document.querySelector(".fancy-modal")
         if (modal && modal.querySelector(".works-card")) {
@@ -136,9 +135,9 @@ function changeUrl(item) {
 
         }
         if (modal && modal.querySelectorAll(".lazy").length > 0) {
-          i = 0
+          let j = 0
           let lazyImages = modal.querySelectorAll(".lazy")
-          loadImg(lazyImages)
+          loadImg(lazyImages, j)
         }
         document.querySelector(".modal").addEventListener("click", e => {
           if (e.target.classList.contains("modal__overlay") || e.target.classList.contains("modal__close")) {
