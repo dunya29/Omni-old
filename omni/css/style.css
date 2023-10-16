@@ -120,6 +120,8 @@ body {
 }
 
 .modal .btn-main {
+  visibility: hidden;
+  opacity: 1;
   position: fixed;
   bottom: 80px;
   left: 50%;
@@ -142,6 +144,51 @@ body {
 .modal .case__header .title-h1,
 .modal .case__header .case-text__disc {
   color: #fff;
+}
+
+.modal-loading-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.modal-loading-icon svg {
+  fill: #fff;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-animation: rotate 3s linear infinite both;
+  animation: rotate 3s linear infinite both;
+}
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  from {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 
 .modal__overlay {

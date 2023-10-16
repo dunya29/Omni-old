@@ -85,6 +85,28 @@ function changeUrl(item) {
   }
   function fetchPage(item) {
     let href = item.getAttribute("href")
+    if (!document.querySelector('.fancy-modal').classList.contains("open")) {
+      openModal(document.querySelector('.fancy-modal'))
+    }
+     document.querySelector('.fancy-modal .modal__inner').innerHTML = 
+    `<div class="modal-loading-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="26.349px" height="26.35px" viewBox="0 0 26.349 26.35" style="enable-background:new 0 0 26.349 26.35;"
+          xml:space="preserve">
+         <g>
+           <circle cx="13.792" cy="3.082" r="3.082"/>
+           <circle cx="13.792" cy="24.501" r="1.849"/>
+           <circle cx="6.219" cy="6.218" r="2.774"/>
+           <circle cx="21.365" cy="21.363" r="1.541"/>
+           <circle cx="3.082" cy="13.792" r="2.465"/>
+           <circle cx="24.501" cy="13.791" r="1.232"/>
+           <path d="M4.694,19.84c-0.843,0.843-0.843,2.207,0,3.05c0.842,0.843,2.208,0.843,3.05,0c0.843-0.843,0.843-2.207,0-3.05
+             C6.902,18.996,5.537,18.988,4.694,19.84z"/>
+           <circle cx="21.364" cy="6.218" r="0.924"/>
+         </g>
+       
+       </svg></div>` 
+       document.querySelector(".modal .btn-main").opacity = 0
+       document.querySelector(".modal .btn-main").visibility = "hidden"
     fetch(href)
       .then(response => {
         if (response.ok) {
@@ -96,21 +118,17 @@ function changeUrl(item) {
         let doc = (new window.DOMParser()).parseFromString(res, "text/html")
         document.title = doc.title
         document.querySelector('.fancy-modal .modal__inner').innerHTML = doc.querySelector(".case__content").innerHTML
-      })
+        document.querySelector(".modal .btn-main").opacity = 1
+        document.querySelector(".modal .btn-main").visibility = "visible"
+    /*   })
       .then(res => {
-        openModal(document.querySelector('.fancy-modal'))
+        openModal(document.querySelector('.fancy-modal')) */
         window.history.pushState("", "", href)
         let modal = document.querySelector(".fancy-modal")
         if (modal && modal.querySelector(".works-card")) {
           modal.querySelectorAll(".works-card").forEach(item => {
             item.addEventListener("click", e => {
               e.preventDefault()
-              $('.modal__overlay').stop().animate(
-                {
-                  scrollTop: 0,
-                },
-                1500
-              );
               fetchPage(item)
             })
           })
@@ -121,14 +139,19 @@ function changeUrl(item) {
           let lazyImages = modal.querySelectorAll(".lazy")
           loadImg(lazyImages)
         }
-        document.querySelector(".modal__overlay").addEventListener("click", e => {
+       /*  document.querySelector(".modal__overlay").addEventListener("click", e => {
           if (!document.querySelector(".modal__content").contains(e.target)) {
             document.title = title
             window.history.replaceState("", "", url)
             //window.history.back()
             closeModal(document.querySelector(".fancy-modal"))
           }
-        })
+        })  */
+        document.querySelector(".modal__close").addEventListener("click", e => {
+            document.title = title
+            window.history.replaceState("", "", url)
+            closeModal(document.querySelector(".fancy-modal"))
+        }) 
 
       })
       .catch((error) => {

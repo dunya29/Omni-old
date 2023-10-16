@@ -97,6 +97,8 @@ body {
         }
     }
     .btn-main {
+        visibility: hidden;
+        opacity: 1;
         position: fixed;
         bottom: 80px;
         left: 50%;
@@ -123,6 +125,24 @@ body {
     .case__header .title-h1,
     .case__header .case-text__disc {
         color: #fff;
+    }
+}
+.modal-loading-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+        fill: #fff;
+        transform-origin: center;
+        animation: rotate 3s linear infinite both;
+    }
+}
+@keyframes rotate {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
     }
 }
 .modal__overlay {
