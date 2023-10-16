@@ -139,19 +139,14 @@ function changeUrl(item) {
           let lazyImages = modal.querySelectorAll(".lazy")
           loadImg(lazyImages)
         }
-       /*  document.querySelector(".modal__overlay").addEventListener("click", e => {
-          if (!document.querySelector(".modal__content").contains(e.target)) {
+        document.querySelector(".modal").addEventListener("click", e => {
+          if (e.target.classList.contains("modal__overlay") || e.target.classList.contains("modal__close")) {
             document.title = title
             window.history.replaceState("", "", url)
             //window.history.back()
             closeModal(document.querySelector(".fancy-modal"))
           }
-        })  */
-        document.querySelector(".modal__close").addEventListener("click", e => {
-            document.title = title
-            window.history.replaceState("", "", url)
-            closeModal(document.querySelector(".fancy-modal"))
-        }) 
+        })
 
       })
       .catch((error) => {

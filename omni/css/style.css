@@ -1,10 +1,37 @@
 video {
   display: block;
+  width: 100%;
   max-width: 100%;
 }
 
-.case-example-new--vid {
+.case-example__new--vid {
   margin-bottom: -1px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  position: relative;
+}
+
+.case-example__new--vid video {
+  z-index: 1;
+}
+
+.case-example__new--vid::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: url("../img/pages/case/loading-icon.svg") no-repeat;
+  background-size: 20px;
+  -webkit-animation: rotateInf 2s infinite linear;
+  animation: rotateInf 2s infinite linear;
+  z-index: 0;
 }
 
 .works-card__img img {

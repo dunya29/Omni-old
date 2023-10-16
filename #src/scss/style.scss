@@ -1,9 +1,27 @@
 video {
     display: block;
+    width: 100%;
     max-width: 100%;
 }
-.case-example-new--vid {
+.case-example__new--vid {
     margin-bottom: -1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    video {
+        z-index: 1;
+    }
+    &::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: url("../img/pages/case/loading-icon.svg") no-repeat;
+        background-size: 20px;
+        animation: rotateInf 2s infinite linear;
+        z-index: 0;
+    }
 }
 
 .works-card__img img {
