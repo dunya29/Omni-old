@@ -5,15 +5,24 @@ video {
 .case-example-new--vid {
     margin-bottom: -1px;
 }
-.case-example-new {
-    background-color: #EBEAE6
+
+.works-card__img img {
+  transition: 0.6s ease-out;
+}
+.works-card__img:hover img {
+  transition: 0.6s ease-out;
+}
+.case__header .case-text__disc {
+    font-size: 20px;
+    @media (max-width: 639px) {
+       font-size: clamp(16px,16px + (20 - 16) * ((100vw - 320px)/(640 - 320)),20px);
+    }
 }
 html,body {
     scroll-behavior: smooth;
 }
 body {
     position: relative;
-    background-color: #fff;
 }
 .footer {
     -webkit-transform: translate3d(0, 0, 0);
@@ -33,8 +42,11 @@ body {
     height: 84px;
     }
 }
-.case__body {
-    cursor: zoom-in;
+.case__header {
+    margin-top: 0;
+}
+.case__content > .case-text {
+    margin-top: 0;
 }
 .footer {
     position: sticky;
@@ -94,15 +106,27 @@ body {
             bottom: 40px;
         }
     }
-    .case-text {
-        margin-top: 0;
+    .case__body {
+        background-color: #fff;
     }
-    .title-h2,.case-text__disc {
+    .case-cards {
+        padding-top: 160px;
+        margin-top: -1px;
+        padding-bottom: 120px;
+        @media (max-width: 768px) {
+           padding-top: 120px;
+        }
+        @media (max-width: 639px) {
+           padding-top: 80px;
+        }
+    }
+    .case__header .title-h1,
+    .case__header .case-text__disc {
         color: #fff;
     }
 }
 .modal__overlay {
-    padding: 80px 40px;
+    padding: 80px 40px 60px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -117,14 +141,11 @@ body {
     backdrop-filter: blur(5px);
     overflow: auto;
     @media (max-width: 1830px) {
-        padding: 80px 20px 40px ;
+        padding: 80px 20px 20px ;
     }
     @media (max-width: 639px) {
-        padding: 50px 10px 40px ;
+        padding: 60px 10px 20px ;
     }
-}
-.modal__inner {
-    background-color: #fff;
 }
 .modal__content {
     width: 100%;
@@ -139,7 +160,7 @@ body {
 .modal__close {
     padding: 0 4px;
     border: 2px solid rgba(255, 255, 255, 0.60);
-    position: absolute;
+    position: fixed;
     top: 80px;
     right: 50px;
     cursor: pointer;

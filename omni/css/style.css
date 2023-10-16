@@ -7,8 +7,20 @@ video {
   margin-bottom: -1px;
 }
 
-.case-example-new {
-  background-color: #EBEAE6;
+.works-card__img img {
+  -webkit-transition: 0.6s ease-out;
+  -o-transition: 0.6s ease-out;
+  transition: 0.6s ease-out;
+}
+
+.works-card__img:hover img {
+  -webkit-transition: 0.6s ease-out;
+  -o-transition: 0.6s ease-out;
+  transition: 0.6s ease-out;
+}
+
+.case__header .case-text__disc {
+  font-size: 20px;
 }
 
 html,
@@ -18,7 +30,6 @@ body {
 
 body {
   position: relative;
-  background-color: #fff;
 }
 
 .footer {
@@ -43,9 +54,12 @@ body {
   transition: padding 0s;
 }
 
-.case__body {
-  cursor: -webkit-zoom-in;
-  cursor: zoom-in;
+.case__header {
+  margin-top: 0;
+}
+
+.case__content > .case-text {
+  margin-top: 0;
 }
 
 .footer {
@@ -115,17 +129,23 @@ body {
   z-index: 1000;
 }
 
-.modal .case-text {
-  margin-top: 0;
+.modal .case__body {
+  background-color: #fff;
 }
 
-.modal .title-h2,
-.modal .case-text__disc {
+.modal .case-cards {
+  padding-top: 160px;
+  margin-top: -1px;
+  padding-bottom: 120px;
+}
+
+.modal .case__header .title-h1,
+.modal .case__header .case-text__disc {
   color: #fff;
 }
 
 .modal__overlay {
-  padding: 80px 40px;
+  padding: 80px 40px 60px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -148,10 +168,6 @@ body {
   overflow: auto;
 }
 
-.modal__inner {
-  background-color: #fff;
-}
-
 .modal__content {
   width: 100%;
   max-width: 1620px;
@@ -170,7 +186,7 @@ body {
 .modal__close {
   padding: 0 4px;
   border: 2px solid rgba(255, 255, 255, 0.6);
-  position: absolute;
+  position: fixed;
   top: 80px;
   right: 50px;
   cursor: pointer;
@@ -244,7 +260,7 @@ body {
   }
 
   .modal__overlay {
-    padding: 80px 20px 40px;
+    padding: 80px 20px 20px;
   }
 
   .modal__close {
@@ -271,13 +287,27 @@ body {
   }
 }
 
+@media (max-width: 768px) {
+  .modal .case-cards {
+    padding-top: 120px;
+  }
+}
+
 @media (max-width: 639px) {
+  .case__header .case-text__disc {
+    font-size: clamp(16px, 16px + 4 * (100vw - 320px) / 320, 20px);
+  }
+
   .footer {
     padding-top: clamp(620px, 620px + 100 * (100vw - 320px) / 320, 720px);
   }
 
+  .modal .case-cards {
+    padding-top: 80px;
+  }
+
   .modal__overlay {
-    padding: 50px 10px 40px;
+    padding: 60px 10px 20px;
   }
 
   .modal__close {
