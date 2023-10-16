@@ -2,11 +2,14 @@
 //"/" udalit github
 document.addEventListener("DOMContentLoaded", ()=> {
   let urlArr = location.href.split("/")
+  console.log(urlArr)
   let idx = urlArr.findIndex(i => "proekty" === i)
   if (idx != -1 && (idx != (urlArr.length - 1)) && urlArr[idx + 1] != "") {
-    sessionStorage.setItem("projectPath", location.pathname)
+    sessionStorage.setItem("projectPath", urlArr[urlArr.length - 1])
+    //sessionStorage.setItem("projectPath", location.pathname)
     let url = urlArr.slice(0, urlArr.length - 1).join("/")
     window.location.replace(
+      //url,
       url + "/",
     );
   }
@@ -137,11 +140,20 @@ function changeUrl(item) {
 window.addEventListener("load", () => {
   if (document.querySelector(".works-card")) {
     document.querySelectorAll(".works-card").forEach(item => {
+      item.addEventListener("click", e => {
+        e.preventDefault()
+        changeUrl(item)
+      })
+    })
+  
+  }
+  if (document.querySelector(".works-card")) {
+    document.querySelectorAll(".works-card").forEach(item => {
       if (item.getAttribute("href").includes(sessionStorage.getItem("projectPath"))) {
         setTimeout(() => {
           sessionStorage.removeItem("projectPath")
         }, 200);
-        item.click()
+       item.click()
         return
       }
     })
@@ -163,13 +175,5 @@ window.addEventListener("load", () => {
       }
     })
   }
-  if (document.querySelector(".works-card")) {
-    document.querySelectorAll(".works-card").forEach(item => {
-      item.addEventListener("click", e => {
-        e.preventDefault()
-        changeUrl(item)
-      })
-    })
   
-  }
 })
