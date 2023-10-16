@@ -71,6 +71,7 @@ function openModal(modal) {
 // unshow modal
 function closeModal(modal) {
   modal.classList.remove("open")
+  modal.querySelector('.modal__inner').innerHTML = ""
   setTimeout(() => {
     enableScroll()
   }, 300);
