@@ -79,10 +79,13 @@ function closeModal(modal) {
 function changeUrl(item) {
   let title
   let url
-  if (!document.querySelector(".fancy-modal").classList.contains("open")) {
+  url = window.location.href
+  title = document.title
+  /* if (!document.querySelector(".fancy-modal").classList.contains("open")) {
     url = window.location.href
     title = document.title
-  }
+    console.log("ff")
+  } */
   function fetchPage(item) {
     let href = item.getAttribute("href")
     if (!document.querySelector('.fancy-modal').classList.contains("open")) {
