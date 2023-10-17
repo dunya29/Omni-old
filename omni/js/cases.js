@@ -1,15 +1,15 @@
 "use strict"
-//"/" udalit github
+// //udalit github -  чтобы заработало в github
 document.addEventListener("DOMContentLoaded", ()=> {
   let urlArr = location.href.split("/")
   let idx = urlArr.findIndex(i => "proekty" === i)
   if (idx != -1 && (idx != (urlArr.length - 1)) && urlArr[idx + 1] != "") {
-    sessionStorage.setItem("projectPath", urlArr[urlArr.length - 1])
     //sessionStorage.setItem("projectPath", location.pathname)
+    sessionStorage.setItem("projectPath", urlArr[urlArr.length - 1])//для github
     let url = urlArr.slice(0, urlArr.length - 1).join("/")
     window.location.replace(
       //url,
-      url + "/",
+      url + "/",//для github
     );
   }
 })
@@ -54,6 +54,7 @@ function enableScroll() {
 }
 //disable scroll
 function disableScroll() {
+  console.log(window.innerWidth - document.documentElement.clientWidth)
   let paddingValue = window.innerWidth > 325 ? window.innerWidth - document.documentElement.clientWidth + 'px' : 0
   if (document.querySelectorAll('.fixed-block')) {
     document.querySelectorAll('.fixed-block').forEach(block => block.style.paddingRight = paddingValue)
@@ -123,9 +124,7 @@ function changeUrl(item) {
         document.querySelector('.fancy-modal .modal__inner').innerHTML = doc.querySelector(".case__content").innerHTML
         document.querySelector(".modal .btn-main").style.opacity = 1
         document.querySelector(".modal .btn-main").style.visibility = "visible"
-      })
-      .then(res => {
-        openModal(document.querySelector('.fancy-modal'))
+       // openModal(document.querySelector('.fancy-modal'))
         window.history.pushState("", "", href)
         let modal = document.querySelector(".fancy-modal")
         if (modal && modal.querySelector(".works-card")) {
@@ -146,7 +145,6 @@ function changeUrl(item) {
           if (e.target.classList.contains("modal__overlay") || e.target.classList.contains("modal__close")) {
             document.title = title
             window.history.replaceState("", "", url)
-            //window.history.back()
             closeModal(document.querySelector(".fancy-modal"))
           }
         })
@@ -188,7 +186,16 @@ window.addEventListener("load", () => {
     );
   });
   if (document.querySelector(".modal__overlay")) {
+    let lastScroll = 0;
+    const scrollPosition = () => window.pageYOffset || document.documentElement.scrollTop;
+    const containHide = () => document.querySelector(".modal__close").classList.contains('hide');
     document.querySelector(".modal__overlay").addEventListener("scroll", () => {
+      if (scrollPosition() > lastScroll && !containHide() && scrollPosition() > 10) {
+        document.querySelector(".modal__close").classList.add('hide');
+      } else if (scrollPosition() < lastScroll && containHide()) {
+        document.querySelector(".modal__close").classList.remove('hide');
+      }
+      lastScroll = scrollPosition();
       if (document.querySelector(".modal__overlay").scrollTop > 400) {
         document.querySelector(".js-pageup").classList.add("show")
       } else {

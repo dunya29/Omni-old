@@ -340,6 +340,8 @@ body {
   .modal__close {
     top: 20px;
     right: 20px;
+    background: #000;
+    padding: 2px;
   }
 
   .js-pageup {
