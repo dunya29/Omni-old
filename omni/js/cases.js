@@ -1,5 +1,6 @@
 "use strict"
-// //udalit github -  чтобы заработало в github
+
+// //для github -  чтобы заработало в github
 document.addEventListener("DOMContentLoaded", ()=> {
   let urlArr = location.href.split("/")
   let idx = urlArr.findIndex(i => "proekty" === i)
@@ -169,9 +170,7 @@ window.addEventListener("load", () => {
   if (document.querySelector(".works-card")) {
     document.querySelectorAll(".works-card").forEach(item => {
       if (item.getAttribute("href").includes(sessionStorage.getItem("projectPath"))) {
-        setTimeout(() => {
-          sessionStorage.removeItem("projectPath")
-        }, 200);
+        sessionStorage.removeItem("projectPath")
        item.click()
         return
       }
